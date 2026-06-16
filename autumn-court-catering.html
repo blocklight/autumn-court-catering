@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catering – Autumn Court | Phoenix's Three-Generation Catering Institution</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #c1121f;
+      --red-lt:   #e63946;
+      --gold:     #c9a227;
+      --gold-lt:  #e6c76a;
+      --bg:       #0d0808;
+      --surface:  #180f0f;
+      --surface2: #221515;
+      --text:     #f0ece4;
+      --muted:    #9a8e88;
+      --radius:   8px;
+      --max:      880px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      line-height: 1.7;
+    }
+
+    a { color: var(--gold); }
+    a:hover { color: var(--gold-lt); }
+
+    /* ── Nav ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,8,8,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #2e1a1a;
+      padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .logo { font-size: 1.05rem; font-weight: bold; letter-spacing: 0.04em; color: var(--gold); }
+    header a.cta-btn {
+      background: var(--red); color: #fff; text-decoration: none;
+      font-size: 0.82rem; font-family: system-ui, sans-serif;
+      font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.45rem 1.1rem; border-radius: var(--radius); transition: background 0.2s;
+    }
+    header a.cta-btn:hover { background: var(--red-lt); }
+
+    /* ── Hero ── */
+    .hero {
+      background:
+        linear-gradient(to bottom, rgba(13,8,8,0.55) 0%, rgba(13,8,8,0.92) 100%),
+        url('https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1400&q=80')
+        center/cover no-repeat;
+      min-height: 580px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 1.5rem 4rem;
+    }
+    .hero-tag {
+      font-family: system-ui, sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(201,162,39,0.35);
+      padding: 0.35rem 1rem; border-radius: 100px; display: inline-block;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      line-height: 1.15; color: #fff; max-width: 720px;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub {
+      margin-top: 1.2rem; font-size: 1.1rem; color: #ccc0b5;
+      max-width: 580px; font-family: system-ui, sans-serif; line-height: 1.65;
+    }
+    .hero-sub strong { color: #fff; font-weight: 600; }
+    .hero-btn {
+      display: inline-block; margin-top: 2rem;
+      background: var(--red); color: #fff; text-decoration: none;
+      font-family: system-ui, sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 0.95rem 2.2rem; border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(193,18,31,0.4);
+    }
+    .hero-btn:hover { background: var(--red-lt); color: #fff; transform: translateY(-2px); }
+    .hero-micro {
+      margin-top: 0.9rem;
+      font-family: system-ui, sans-serif; font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* ── Credential bar ── */
+    .cred-bar {
+      background: var(--surface2);
+      border-top: 1px solid #2e1a1a;
+      border-bottom: 1px solid #2e1a1a;
+      padding: 1rem 1.5rem;
+      overflow: hidden;
+    }
+    .cred-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 0.6rem 2rem;
+      align-items: center; justify-content: center;
+    }
+    .cred-item {
+      font-family: system-ui, sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); display: flex; align-items: center; gap: 0.45rem;
+    }
+    .cred-item .dot { color: var(--red); font-size: 1rem; line-height: 1; }
+
+    /* ── Sections ── */
+    section { padding: 4.5rem 1.5rem; }
+    .inner { max-width: var(--max); margin: 0 auto; }
+    .section-label {
+      font-family: system-ui, sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 0.6rem;
+    }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); color: #fff; line-height: 1.2; margin-bottom: 0.8rem; }
+
+    /* ── Offer cards ── */
+    .offer { background: var(--surface); }
+    .cuisine-strip {
+      margin-top: 1rem; margin-bottom: 2.5rem;
+      font-family: system-ui, sans-serif; font-size: 0.9rem; color: var(--muted);
+    }
+    .cuisine-strip span {
+      display: inline-block; background: var(--surface2);
+      border: 1px solid #2e1a1a; border-radius: 100px;
+      padding: 0.25rem 0.85rem; margin: 0.2rem;
+      color: var(--gold-lt); font-size: 0.82rem;
+    }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+    .offer-card {
+      background: var(--surface2); border: 1px solid #2e1a1a;
+      border-top: 3px solid var(--red); border-radius: var(--radius);
+      padding: 1.5rem 1.2rem;
+    }
+    .offer-card .icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .offer-card h3 { font-size: 1rem; color: var(--gold-lt); margin-bottom: 0.5rem; }
+    .offer-card p {
+      font-family: system-ui, sans-serif; font-size: 0.88rem;
+      color: var(--muted); line-height: 1.65;
+    }
+    .offer-card p strong { color: var(--text); font-weight: 600; }
+
+    /* ── Value stack ── */
+    .value-section { background: var(--bg); }
+    .value-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 1.2rem; margin-top: 2rem;
+    }
+    .value-item {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .value-check {
+      background: var(--red); color: #fff;
+      font-size: 0.75rem; font-weight: 700;
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 0.15rem;
+    }
+    .value-item p {
+      font-family: system-ui, sans-serif; font-size: 0.9rem; color: var(--muted); line-height: 1.55;
+    }
+    .value-item p strong { color: var(--text); font-weight: 600; }
+
+    /* ── Form ── */
+    .form-section { background: var(--surface); }
+    .form-wrap {
+      background: var(--bg); border: 1px solid #2e1a1a;
+      border-radius: 12px; padding: 2.5rem 2rem; margin-top: 2rem;
+    }
+    .form-subhead {
+      font-family: system-ui, sans-serif; font-size: 0.95rem;
+      color: var(--muted); margin-bottom: 1.8rem; line-height: 1.6;
+    }
+    .form-subhead strong { color: var(--text); }
+
+    [data-fs-success] {
+      display: none; background: #1a2e1a; border: 1px solid #3a6b3a;
+      border-radius: var(--radius); padding: 1.4rem 1.6rem; text-align: center;
+      font-family: system-ui, sans-serif; font-size: 1rem; color: #8ecf8e; margin-bottom: 1.2rem;
+    }
+    [data-fs-error]:not([data-fs-error=""]) {
+      display: block; background: #2e1a1a; border: 1px solid #6b3a3a;
+      border-radius: var(--radius); padding: 0.8rem 1rem;
+      font-family: system-ui, sans-serif; font-size: 0.85rem; color: #cf8e8e; margin-bottom: 0.8rem;
+    }
+    span[data-fs-error] {
+      font-family: system-ui, sans-serif; font-size: 0.78rem; color: #cf8e8e;
+      margin-top: 0.2rem; display: none;
+    }
+    span[data-fs-error]:not(:empty) { display: block; }
+    input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
+      border-color: #cf8e8e; box-shadow: 0 0 0 3px rgba(207,142,142,0.15);
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.4rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-family: system-ui, sans-serif; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted);
+    }
+    input, select, textarea {
+      background: var(--surface); border: 1px solid #2e1a1a;
+      border-radius: var(--radius); color: var(--text);
+      font-family: system-ui, sans-serif; font-size: 0.95rem;
+      padding: 0.7rem 0.9rem; width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none; -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,162,39,0.18);
+    }
+    select option { background: #180f0f; }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .submit-btn {
+      display: block; width: 100%; margin-top: 1.4rem;
+      background: var(--red); color: #fff; border: none;
+      border-radius: var(--radius); font-family: system-ui, sans-serif;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 1rem; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 18px rgba(193,18,31,0.35);
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--red-lt); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    /* Trust signals under button */
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem;
+      justify-content: center; margin-top: 1.1rem;
+    }
+    .trust-item {
+      font-family: system-ui, sans-serif; font-size: 0.78rem;
+      color: var(--muted); display: flex; align-items: center; gap: 0.35rem;
+    }
+    .trust-item .chk { color: var(--gold); font-weight: 700; }
+
+    /* ── Contact ── */
+    .contact-section { background: var(--surface2); }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 1.4rem; margin-top: 2rem;
+    }
+    .contact-item { display: flex; align-items: flex-start; gap: 0.8rem; }
+    .contact-icon { font-size: 1.4rem; margin-top: 0.1rem; flex-shrink: 0; }
+    .contact-item h4 {
+      font-family: system-ui, sans-serif; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem;
+    }
+    .contact-item p, .contact-item a {
+      font-family: system-ui, sans-serif; font-size: 0.95rem;
+      color: var(--text); text-decoration: none;
+    }
+    .contact-item a:hover { color: var(--gold-lt); }
+
+    /* ── Divider ── */
+    .gold-divider {
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--red), var(--gold), var(--red), transparent);
+      max-width: var(--max); margin: 0 auto; opacity: 0.5;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg); text-align: center; padding: 2rem 1.5rem;
+      font-family: system-ui, sans-serif; font-size: 0.82rem;
+      color: var(--muted); border-top: 1px solid #1f0e0e;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .form-wrap { padding: 1.5rem 1rem; }
+      header { padding: 0 1rem; }
+      .trust-row { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="logo">🏮 Autumn Court</div>
+  <a class="cta-btn" href="#inquiry">Get a Free Quote</a>
+</header>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <span class="hero-tag">Phoenix's Three-Generation Catering Institution</span>
+  <h1>Your Guests Will Still Be Talking About the Food <em>Next Week</em></h1>
+  <p class="hero-sub">
+    Autumn Court has fed <strong>Microsoft, Amazon, Phoenix Chinese Week</strong>, and thousands of Phoenix families.
+    Five cuisines. Any size. Zero stress on your end.
+  </p>
+  <a class="hero-btn" href="#inquiry">Get My Free Custom Quote →</a>
+  <p class="hero-micro">No commitment. No pressure. Reply within 1 business day.</p>
+</div>
+
+<!-- ── Credential bar ── -->
+<div class="cred-bar">
+  <div class="cred-inner">
+    <div class="cred-item"><span class="dot">★</span> Best Old School Chinese Restaurant — Phoenix New Times</div>
+    <div class="cred-item"><span class="dot">·</span> Three Generations Strong</div>
+    <div class="cred-item"><span class="dot">·</span> Trusted by Microsoft &amp; Amazon</div>
+    <div class="cred-item"><span class="dot">·</span> Featured at Phoenix Chinese Week</div>
+    <div class="cred-item"><span class="dot">·</span> Events from 25 to 500+ Guests</div>
+  </div>
+</div>
+
+<!-- ── Offer / Services ── -->
+<section class="offer" id="services">
+  <div class="inner">
+    <p class="section-label">What We Do</p>
+    <h2>One Call. Five Cuisines. Every Guest Happy.</h2>
+    <p style="color:var(--muted);font-family:system-ui,sans-serif;max-width:580px;">
+      Stop worrying about picky eaters. We serve Chinese, Thai, Japanese Teriyaki, Hawaiian, and Wings —
+      so no one at your event goes home disappointed.
+    </p>
+    <div class="cuisine-strip">
+      <span>🥢 Chinese</span>
+      <span>🍜 Thai</span>
+      <span>🍱 Japanese Teriyaki</span>
+      <span>🌺 Hawaiian</span>
+      <span>🍗 Wings</span>
+    </div>
+
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="icon">🏢</div>
+        <h3>Corporate Catering</h3>
+        <p>If it's good enough for <strong>Microsoft and Amazon</strong>, it's good enough to impress your clients and reward your team. Boxed lunches, buffets, or full spreads — punctual, professional, and genuinely delicious.</p>
+      </div>
+      <div class="offer-card">
+        <div class="icon">🍽️</div>
+        <h3>Family Style Meals</h3>
+        <p>Big platters. Shared tables. The kind of meal that turns a room full of strangers into a room full of full, happy people. <strong>Family style is what we were built for.</strong></p>
+      </div>
+      <div class="offer-card">
+        <div class="icon">💐</div>
+        <h3>Wedding Meals</h3>
+        <p>Feeding your crew before the big day? We handle rehearsal dinners and pre-wedding meals — <strong>delicious, relaxed, and completely stress-free.</strong> One less thing on your plate.</p>
+      </div>
+      <div class="offer-card">
+        <div class="icon">🎉</div>
+        <h3>Private Parties</h3>
+        <p>Birthdays, anniversaries, reunions, holiday parties. <strong>We've done them all, for 25 to 500+ guests.</strong> Three generations of knowing exactly how to make a celebration feel special.</p>
+      </div>
+      <div class="offer-card">
+        <div class="icon">🌐</div>
+        <h3>Community &amp; Cultural Events</h3>
+        <p>Proud to have served <strong>Phoenix Chinese Week</strong> and cultural events across the Valley. We understand that some meals carry more meaning than others — and we take that seriously.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ── Value stack ── -->
+<section class="value-section">
+  <div class="inner">
+    <p class="section-label">Why Autumn Court</p>
+    <h2>What You're Actually Getting</h2>
+    <div class="value-grid">
+      <div class="value-item">
+        <div class="value-check">✓</div>
+        <p><strong>Three generations of catering experience</strong> — we've seen every kind of event and know how to handle it.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-check">✓</div>
+        <p><strong>Five cuisines under one roof</strong> — Chinese, Thai, Teriyaki, Hawaiian, and Wings. Everyone eats.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-check">✓</div>
+        <p><strong>Corporate-proven reliability</strong> — trusted by Microsoft, Amazon, and hundreds of Phoenix businesses.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-check">✓</div>
+        <p><strong>Any headcount, any occasion</strong> — from intimate gatherings of 25 to full events of 500+.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-check">✓</div>
+        <p><strong>Fresh, made-to-order food</strong> — not premade, not reheated. The same quality your family would expect.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-check">✓</div>
+        <p><strong>A Phoenix institution</strong> — rated Best Old School Chinese Restaurant by Phoenix New Times.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ── Form ── -->
+<section class="form-section" id="inquiry">
+  <div class="inner">
+    <p class="section-label">Get Started — It's Free</p>
+    <h2>Reserve Your Date Before It's Gone</h2>
+    <div class="form-wrap">
+      <p class="form-subhead">
+        Weekends book fast — especially for corporate events and parties. <strong>Tell us about your event</strong>
+        and we'll send you a custom quote within one business day. No commitment. No sales pitch. Just a straight answer.
+      </p>
+
+      <div data-fs-success>✅ &nbsp;You're on our radar! We'll be in touch within one business day with your custom quote.</div>
+      <div data-fs-error></div>
+
+      <form id="cateringForm">
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required data-fs-field />
+            <span data-fs-error="name"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required data-fs-field />
+            <span data-fs-error="email"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(602) 234-0512" data-fs-field />
+            <span data-fs-error="phone"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="event-date">Event Date *</label>
+            <input type="date" id="event-date" name="event_date" required data-fs-field />
+            <span data-fs-error="event_date"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="headcount">Guest Count *</label>
+            <input type="number" id="headcount" name="headcount" placeholder="e.g. 75" min="1" required data-fs-field />
+            <span data-fs-error="headcount"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="event-type">Event Type *</label>
+            <select id="event-type" name="event_type" required data-fs-field>
+              <option value="" disabled selected>What's the occasion?</option>
+              <option>Corporate / Office Catering</option>
+              <option>Family Style Meal</option>
+              <option>Wedding Meal / Rehearsal Dinner</option>
+              <option>Birthday Party</option>
+              <option>Anniversary</option>
+              <option>Family Reunion</option>
+              <option>Cultural / Community Event</option>
+              <option>Holiday Party</option>
+              <option>Other</option>
+            </select>
+            <span data-fs-error="event_type"></span>
+          </div>
+
+          <div class="form-group full">
+            <label for="message">Tell Us More</label>
+            <textarea id="message" name="message" placeholder="Cuisine preferences, dietary needs, venue details, timing, or anything else that helps us give you an accurate quote." data-fs-field></textarea>
+            <span data-fs-error="message"></span>
+          </div>
+
+        </div>
+
+        <button type="submit" class="submit-btn" data-fs-submit-btn>
+          Yes — Send Me a Free Custom Quote →
+        </button>
+
+        <div class="trust-row">
+          <span class="trust-item"><span class="chk">✓</span> No commitment required</span>
+          <span class="trust-item"><span class="chk">✓</span> Reply within 1 business day</span>
+          <span class="trust-item"><span class="chk">✓</span> Trusted by Microsoft &amp; Amazon</span>
+          <span class="trust-item"><span class="chk">✓</span> 3 generations, thousands of events</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ── Contact ── -->
+<section class="contact-section" id="contact">
+  <div class="inner">
+    <p class="section-label">Reach Us Directly</p>
+    <h2>Prefer to Talk? We'd Love to Hear from You.</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <a href="tel:+16022340512">(602) 234-0512</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:manager@autumncourt.com">manager@autumncourt.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Location</h4>
+          <a href="https://maps.google.com/?q=3752+E+Indian+School+Rd+Phoenix+AZ+85018" target="_blank" rel="noopener">
+            3752 E. Indian School Rd.<br>Phoenix, AZ 85018
+          </a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <h4>Website</h4>
+          <a href="https://www.autumncourt.com" target="_blank" rel="noopener">autumncourt.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>© 2026 <span>Autumn Court Chinese Restaurant</span> &nbsp;·&nbsp; 3752 E. Indian School Rd., Phoenix, AZ 85018 &nbsp;·&nbsp; All rights reserved.</p>
+</footer>
+
+<!-- ── Formspree ── -->
+<script>
+  const dateInput = document.getElementById('event-date');
+  dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#cateringForm', formId: 'xjgdzgek' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
